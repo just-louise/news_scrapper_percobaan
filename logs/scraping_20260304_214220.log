@@ -1,0 +1,4 @@
+21:42:20 [INFO] root: Logger aktif. File log disimpan di: logs/scraping_20260304_214220.log
+21:42:20 [DEBUG] core.date_filter: Artikel terlalu lama: 2024-02-28 < 2024-03-01
+21:42:20 [DEBUG] core.date_filter: Artikel terlalu baru: 2024-03-11 > 2024-03-10
+21:42:20 [DEBUG] core.date_filter: Tanggal tidak bisa di-parse, artikel diloloskan: 'Tidak diketahui'

@@ -1,0 +1,5 @@
+21:38:05 [INFO] root: Logger aktif. File log disimpan di: logs/scraping_20260304_213805.log
+21:38:05 [DEBUG] __main__: Ini pesan DEBUG — hanya muncul di file log
+21:38:05 [INFO] __main__: Ini pesan INFO — muncul di terminal dan file
+21:38:05 [WARNING] __main__: Ini pesan WARNING — ada yang perlu diperhatikan
+21:38:05 [ERROR] __main__: Ini pesan ERROR — ada yang gagal
