@@ -1,0 +1,29 @@
+22:20:16 [INFO] root: Logger aktif. File log disimpan di: logs/scraping_20260304_222016.log
+22:21:09 [INFO] WDM: ====== WebDriver manager ======
+22:21:11 [INFO] WDM: Get LATEST chromedriver version for google-chrome
+22:21:11 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): googlechromelabs.github.io:443
+22:21:12 [DEBUG] urllib3.connectionpool: https://googlechromelabs.github.io:443 "GET /chrome-for-testing/latest-patch-versions-per-build.json HTTP/1.1" 200 15573
+22:21:12 [INFO] WDM: Get LATEST chromedriver version for google-chrome
+22:21:12 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): googlechromelabs.github.io:443
+22:21:13 [DEBUG] urllib3.connectionpool: https://googlechromelabs.github.io:443 "GET /chrome-for-testing/latest-patch-versions-per-build.json HTTP/1.1" 200 15573
+22:21:13 [INFO] WDM: Driver [C:\Users\luis\.wdm\drivers\chromedriver\win64\145.0.7632.117\chromedriver-win32/chromedriver.exe] found in cache
+22:21:13 [DEBUG] selenium.webdriver.common.driver_finder: Skipping Selenium Manager; path to chrome driver specified in Service class: C:\Users\luis\.wdm\drivers\chromedriver\win64\145.0.7632.117\chromedriver-win32/chromedriver.exe
+22:21:13 [DEBUG] selenium.webdriver.common.service: Started executable: `C:\Users\luis\.wdm\drivers\chromedriver\win64\145.0.7632.117\chromedriver-win32/chromedriver.exe` in a child process with pid: 27752 using 0 to output -3
+22:21:13 [DEBUG] selenium.webdriver.remote.remote_connection: POST http://localhost:60207/session {'capabilities': {'firstMatch': [{}], 'alwaysMatch': {'browserName': 'chrome', 'pageLoadStrategy': <PageLoadStrategy.normal: 'normal'>, 'goog:chromeOptions': {'excludeSwitches': ['enable-automation'], 'useAutomationExtension': False, 'extensions': [], 'args': ['--headless', '--no-sandbox', '--disable-dev-shm-usage', '--disable-gpu', '--window-size=1920,1080', 'user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36', '--disable-notifications']}}}}
+22:21:13 [DEBUG] urllib3.connectionpool: Starting new HTTP connection (1): localhost:60207
+22:21:14 [DEBUG] urllib3.connectionpool: http://localhost:60207 "POST /session HTTP/1.1" 200 0
+22:21:14 [DEBUG] selenium.webdriver.remote.remote_connection: Remote response: status=200 | data={"value":{"capabilities":{"acceptInsecureCerts":false,"browserName":"chrome","browserVersion":"145.0.7632.119","chrome":{"chromedriverVersion":"145.0.7632.117 (de4e5d6e13b995f5e04137970c0e8ec456017467-refs/branch-heads/7632@{#3101})","userDataDir":"C:\\Users\\luis\\AppData\\Local\\Temp\\scoped_dir27752_1692279764"},"fedcm:accounts":true,"goog:chromeOptions":{"debuggerAddress":"localhost:60210"},"goog:processID":33108,"networkConnectionEnabled":false,"pageLoadStrategy":"normal","platformName":"windows","proxy":{},"setWindowRect":true,"strictFileInteractability":false,"timeouts":{"implicit":0,"pageLoad":300000,"script":30000},"unhandledPromptBehavior":"dismiss and notify","webauthn:extension:credBlob":true,"webauthn:extension:largeBlob":true,"webauthn:extension:minPinLength":true,"webauthn:extension:prf":true,"webauthn:virtualAuthenticators":true},"sessionId":"28d334b0e1f80f11193b48b203b97ce0"}} | headers=HTTPHeaderDict({'Content-Length': '906', 'Content-Type': 'application/json; charset=utf-8', 'cache-control': 'no-cache'})
+22:21:14 [DEBUG] selenium.webdriver.remote.remote_connection: Finished Request
+22:21:14 [DEBUG] selenium.webdriver.remote.remote_connection: POST http://localhost:60207/session/28d334b0e1f80f11193b48b203b97ce0/execute/sync {'script': "Object.defineProperty(navigator, 'webdriver', {get: () => undefined})", 'args': []}
+22:21:14 [DEBUG] urllib3.connectionpool: http://localhost:60207 "POST /session/28d334b0e1f80f11193b48b203b97ce0/execute/sync HTTP/1.1" 200 0
+22:21:14 [DEBUG] selenium.webdriver.remote.remote_connection: Remote response: status=200 | data={"value":null} | headers=HTTPHeaderDict({'Content-Length': '14', 'Content-Type': 'application/json; charset=utf-8', 'cache-control': 'no-cache'})
+22:21:14 [DEBUG] selenium.webdriver.remote.remote_connection: Finished Request
+22:21:14 [INFO] scraper.link_collector: 📄 Membuka halaman 1: https://www.detik.com/...
+22:21:14 [DEBUG] selenium.webdriver.remote.remote_connection: POST http://localhost:60207/session/28d334b0e1f80f11193b48b203b97ce0/url {'url': 'https://www.detik.com/'}
+22:23:14 [ERROR] scraper.link_collector: Error tidak terduga di kumpulkan_link: HTTPConnectionPool(host='localhost', port=60207): Read timed out. (read timeout=120)
+22:23:14 [DEBUG] selenium.webdriver.remote.remote_connection: DELETE http://localhost:60207/session/28d334b0e1f80f11193b48b203b97ce0 {}
+22:23:14 [DEBUG] urllib3.connectionpool: Starting new HTTP connection (2): localhost:60207
+22:24:02 [DEBUG] urllib3.connectionpool: http://localhost:60207 "DELETE /session/28d334b0e1f80f11193b48b203b97ce0 HTTP/1.1" 200 0
+22:24:02 [DEBUG] selenium.webdriver.remote.remote_connection: Remote response: status=200 | data={"value":null} | headers=HTTPHeaderDict({'Content-Length': '14', 'Content-Type': 'application/json; charset=utf-8', 'cache-control': 'no-cache'})
+22:24:02 [DEBUG] selenium.webdriver.remote.remote_connection: Finished Request
+22:24:04 [INFO] scraper.link_collector: 🏁 Total link terkumpul: 0

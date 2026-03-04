@@ -1,0 +1,3 @@
+21:40:10 [INFO] root: Logger aktif. File log disimpan di: logs/scraping_20260304_214010.log
+21:40:10 [INFO] utils.export_manager: Export CSV berhasil: test_output.csv (3 artikel)
+21:40:10 [INFO] utils.export_manager: Export Excel berhasil: test_output.xlsx (3 artikel)
