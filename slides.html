@@ -1,0 +1,1046 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PyQt5: Dari Kepingan Menuju Karya 🚀</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --bg-dark: #0d0d0d;
+        --bg-card: #1a1a1a;
+        --bg-card-hover: #252525;
+        --gold-primary: #d4af37;
+        --gold-light: #f4d03f;
+        --gold-dark: #aa8c2c;
+        --text-primary: #ffffff;
+        --text-secondary: #a0a0a0;
+        --text-gold: #d4af37;
+        --border-gold: rgba(212, 175, 55, 0.3);
+        --glow-gold: rgba(212, 175, 55, 0.2);
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        background: var(--bg-dark);
+        color: var(--text-primary);
+        overflow: hidden;
+        height: 100vh;
+      }
+
+      .slide-container {
+        height: 100vh;
+        width: 100vw;
+        position: relative;
+      }
+
+      .slide {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 2rem;
+        opacity: 0;
+        transform: translateX(100%);
+        transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        pointer-events: none;
+        background: var(--bg-dark);
+      }
+
+      .slide.active {
+        opacity: 1;
+        transform: translateX(0);
+        pointer-events: auto;
+      }
+
+      .slide.prev {
+        transform: translateX(-100%);
+      }
+
+      /* Common Styles */
+      h2 {
+        font-family: "Space Grotesk", sans-serif;
+        font-size: clamp(2rem, 5vw, 3.5rem);
+        margin-bottom: 2rem;
+        color: var(--gold-primary);
+        text-align: center;
+      }
+
+      .subtitle {
+        color: var(--text-secondary);
+        font-size: clamp(1rem, 2vw, 1.2rem);
+        text-align: center;
+        max-width: 800px;
+      }
+
+      /* Slide 1 - Title */
+      .slide-1 {
+        background: var(--bg-dark);
+      }
+
+      .slide-1 h1 {
+        font-family: "Space Grotesk", sans-serif;
+        font-size: clamp(3rem, 10vw, 7rem);
+        font-weight: 700;
+        text-align: center;
+        color: var(--gold-primary);
+        text-shadow: 0 0 60px var(--glow-gold);
+      }
+
+      .slide-1 .tagline {
+        font-size: clamp(1.2rem, 3vw, 1.8rem);
+        color: var(--text-secondary);
+        margin-top: 1rem;
+      }
+
+      .slide-1 .emoji-row {
+        font-size: 2.5rem;
+        margin-top: 2rem;
+        animation: float 3s ease-in-out infinite;
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-15px);
+        }
+      }
+
+      .author {
+        margin-top: 2rem;
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+      }
+
+      /* Slide 2 - Apa itu PyQt5 */
+      .slide-2 .content-box {
+        background: var(--bg-card);
+        border: 1px solid var(--border-gold);
+        border-radius: 16px;
+        padding: 2rem;
+        max-width: 900px;
+        width: 100%;
+      }
+
+      .slide-2 .content-box p {
+        font-size: clamp(1rem, 2vw, 1.2rem);
+        line-height: 1.8;
+        margin-bottom: 1.5rem;
+        color: var(--text-secondary);
+      }
+
+      .highlight {
+        color: var(--gold-primary);
+        font-weight: 600;
+      }
+
+      .tech-badges {
+        display: flex;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+        margin-top: 1rem;
+      }
+
+      .tech-badge {
+        background: var(--bg-card-hover);
+        border: 1px solid var(--border-gold);
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        font-size: 0.85rem;
+        color: var(--gold-light);
+      }
+
+      /* Slide 3 - Core 1: 4 Langkah */
+      .slide-3 .steps-container {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        max-width: 800px;
+        width: 100%;
+      }
+
+      .step-item {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+        background: var(--bg-card);
+        border: 1px solid var(--border-gold);
+        border-radius: 12px;
+        padding: 1.5rem;
+        transition: all 0.3s;
+      }
+
+      .step-item:hover {
+        background: var(--bg-card-hover);
+        transform: translateX(10px);
+      }
+
+      .step-number {
+        width: 50px;
+        height: 50px;
+        background: var(--gold-primary);
+        color: var(--bg-dark);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "Space Grotesk", sans-serif;
+        font-weight: 700;
+        font-size: 1.5rem;
+        flex-shrink: 0;
+      }
+
+      .step-content h4 {
+        color: var(--gold-light);
+        font-size: 1.1rem;
+        margin-bottom: 0.3rem;
+      }
+
+      .step-content p {
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+      }
+
+      .step-content code {
+        font-family: "JetBrains Mono", monospace;
+        background: var(--bg-dark);
+        padding: 0.2rem 0.5rem;
+        border-radius: 4px;
+        color: var(--gold-primary);
+        font-size: 0.85rem;
+      }
+
+      .bab-reference {
+        margin-top: 1.5rem;
+        padding: 1rem;
+        background: var(--bg-card);
+        border-left: 3px solid var(--gold-primary);
+        border-radius: 0 8px 8px 0;
+      }
+
+      .bab-reference span {
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+      }
+
+      .bab-reference a {
+        color: var(--gold-primary);
+        text-decoration: none;
+      }
+
+      /* Slide 4 - Core 2: Event Loop */
+      .slide-4 .event-loop-visual {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 2rem;
+        max-width: 900px;
+        width: 100%;
+        flex-wrap: wrap;
+      }
+
+      .loop-diagram {
+        position: relative;
+        width: 200px;
+        height: 200px;
+      }
+
+      .loop-circle {
+        width: 100%;
+        height: 100%;
+        border: 4px solid var(--gold-primary);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        animation: pulse 2s ease-in-out infinite;
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          box-shadow: 0 0 0 0 var(--glow-gold);
+        }
+        50% {
+          box-shadow: 0 0 30px 10px var(--glow-gold);
+        }
+      }
+
+      .loop-circle span {
+        font-family: "Space Grotesk", sans-serif;
+        font-size: 1.2rem;
+        color: var(--gold-primary);
+        text-align: center;
+      }
+
+      .event-items {
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+      }
+
+      .event-item {
+        background: var(--bg-card);
+        border: 1px solid var(--border-gold);
+        padding: 1rem 1.5rem;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .event-item .icon {
+        font-size: 1.5rem;
+      }
+
+      .event-item span {
+        color: var(--text-secondary);
+      }
+
+      /* Slide 5 - Core 3: Widgets & Layouts */
+      .slide-5 .widgets-layout {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+        max-width: 1000px;
+        width: 100%;
+      }
+
+      @media (max-width: 768px) {
+        .slide-5 .widgets-layout {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .widget-section,
+      .layout-section {
+        background: var(--bg-card);
+        border: 1px solid var(--border-gold);
+        border-radius: 16px;
+        padding: 1.5rem;
+      }
+
+      .section-title {
+        color: var(--gold-primary);
+        font-size: 1.3rem;
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .widget-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+
+      .widget-tag {
+        background: var(--bg-dark);
+        border: 1px solid var(--border-gold);
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        color: var(--text-secondary);
+        transition: all 0.3s;
+      }
+
+      .widget-tag:hover {
+        background: var(--gold-primary);
+        color: var(--bg-dark);
+      }
+
+      .layout-types {
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+      }
+
+      .layout-type {
+        background: var(--bg-dark);
+        border: 1px solid var(--border-gold);
+        padding: 0.8rem 1rem;
+        border-radius: 8px;
+        font-size: 0.9rem;
+      }
+
+      .layout-type strong {
+        color: var(--gold-light);
+      }
+
+      .layout-type span {
+        color: var(--text-secondary);
+      }
+
+      /* Slide 6 - Core 4: Styling */
+      .slide-6 .styling-demo {
+        max-width: 900px;
+        width: 100%;
+      }
+
+      .code-block {
+        background: var(--bg-card);
+        border: 1px solid var(--border-gold);
+        border-radius: 12px;
+        overflow: hidden;
+        margin-bottom: 1.5rem;
+      }
+
+      .code-header {
+        background: var(--bg-card-hover);
+        padding: 0.8rem 1rem;
+        border-bottom: 1px solid var(--border-gold);
+        font-size: 0.85rem;
+        color: var(--text-secondary);
+      }
+
+      .code-content {
+        padding: 1.5rem;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.9rem;
+        line-height: 1.6;
+        overflow-x: auto;
+      }
+
+      .code-content .keyword {
+        color: #ff79c6;
+      }
+      .code-content .string {
+        color: #f1fa8c;
+      }
+      .code-content .property {
+        color: var(--gold-light);
+      }
+      .code-content .value {
+        color: #8be9fd;
+      }
+      .code-content .comment {
+        color: var(--text-secondary);
+      }
+
+      .css-features {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 1rem;
+      }
+
+      .css-feature {
+        background: var(--bg-card);
+        border: 1px solid var(--border-gold);
+        padding: 1rem;
+        border-radius: 8px;
+        text-align: center;
+      }
+
+      .css-feature .icon {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .css-feature span {
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+      }
+
+      /* Slide 7 - Qt Designer */
+      .slide-7 .content-box {
+        background: var(--bg-card);
+        border: 1px solid var(--border-gold);
+        border-radius: 16px;
+        padding: 2rem;
+      }
+
+      .slide-7 h4 {
+        font-family: "Space Grotesk", sans-serif;
+      }
+
+      /* Slide 8 - CTA */
+      .slide-8 {
+        text-align: center;
+      }
+
+      .slide-8 h2 {
+        margin-bottom: 1rem;
+      }
+
+      .cta-button {
+        display: inline-block;
+        background: var(--gold-primary);
+        color: var(--bg-dark);
+        padding: 1rem 2.5rem;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 1.2rem;
+        transition: all 0.3s;
+        margin-top: 1rem;
+      }
+
+      .cta-button:hover {
+        background: var(--gold-light);
+        transform: scale(1.05);
+        box-shadow: 0 10px 40px var(--glow-gold);
+      }
+
+      .qr-container {
+        margin-top: 2rem;
+        text-align: center;
+      }
+
+      .qr-container img {
+        width: 150px;
+        height: 150px;
+        border-radius: 12px;
+        background: white;
+        padding: 10px;
+      }
+
+      .qr-container p {
+        margin-top: 0.5rem;
+        font-size: 0.9rem;
+        color: var(--text-secondary);
+      }
+
+      .stats-row {
+        display: flex;
+        gap: 2rem;
+        margin-top: 2rem;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .stat-item {
+        text-align: center;
+      }
+
+      .stat-item .number {
+        font-family: "Space Grotesk", sans-serif;
+        font-size: 2.5rem;
+        color: var(--gold-primary);
+      }
+
+      .stat-item .label {
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+      }
+
+      /* Navigation */
+      .nav-dots {
+        position: fixed;
+        bottom: 2rem;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 0.5rem;
+        z-index: 100;
+      }
+
+      .nav-dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: var(--bg-card);
+        border: 1px solid var(--border-gold);
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+
+      .nav-dot.active {
+        background: var(--gold-primary);
+        transform: scale(1.3);
+      }
+
+      .nav-arrows {
+        position: fixed;
+        bottom: 2rem;
+        right: 2rem;
+        display: flex;
+        gap: 1rem;
+        z-index: 100;
+      }
+
+      .nav-arrow {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: var(--bg-card);
+        border: 1px solid var(--border-gold);
+        color: var(--gold-primary);
+        font-size: 1.5rem;
+        cursor: pointer;
+        transition: all 0.3s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .nav-arrow:hover {
+        background: var(--gold-primary);
+        color: var(--bg-dark);
+      }
+
+      .slide-number {
+        position: fixed;
+        top: 2rem;
+        right: 2rem;
+        font-family: "Space Grotesk", sans-serif;
+        font-size: 1rem;
+        color: var(--text-secondary);
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        .nav-arrows {
+          bottom: 1rem;
+          right: 1rem;
+        }
+
+        .slide-3 .steps-container {
+          padding: 0 1rem;
+        }
+
+        .step-item {
+          padding: 1rem;
+        }
+
+        .step-number {
+          width: 40px;
+          height: 40px;
+          font-size: 1.2rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="slide-container">
+      <!-- Slide 1: Title -->
+      <div class="slide slide-1 active">
+        <h1>PyQt5</h1>
+        <p class="tagline">Dari Kepingan Menuju Karya</p>
+        <p class="subtitle" style="margin-top: 0.5rem">
+          Belajar Membangun Aplikasi GUI Seperti Main Lego
+        </p>
+        <div class="emoji-row">🐍 🎨 💻 🚀</div>
+        <p class="author">Oleh: Muhammad Rizqi Sholahuddin</p>
+      </div>
+
+      <!-- Slide 2: Apa itu PyQt5 -->
+      <div class="slide slide-2">
+        <h2>Apa itu PyQt5? 🤔</h2>
+        <div class="content-box">
+          <p>
+            <span class="highlight">PyQt5</span> adalah Python binding untuk
+            framework Qt yang memungkinkan kamu membuat aplikasi GUI
+            cross-platform dengan Python.
+          </p>
+          <p>
+            Bayangkan seperti <span class="highlight">Lego</span> — kamu tinggal
+            susun widget-widget yang sudah disediakan, dan boom! Aplikasi GUI
+            kamu jadi! 🎉
+          </p>
+          <p>
+            Qt sendiri adalah framework C++ yang sudah dipakai oleh perusahaan
+            besar seperti Mercedes-Benz, AMD, VirtualBox, dan banyak lagi!
+          </p>
+          <div class="tech-badges">
+            <span class="tech-badge">Python 3</span>
+            <span class="tech-badge">Qt 5</span>
+            <span class="tech-badge">Cross-Platform</span>
+            <span class="tech-badge">Open Source</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 3: Core 1 - 4 Langkah -->
+      <div class="slide slide-3">
+        <h2>Core 1: Pola 4 Langkah 📋</h2>
+        <p class="subtitle" style="margin-bottom: 2rem">
+          Siklus wajib setiap aplikasi PyQt5
+        </p>
+        <div class="steps-container">
+          <div class="step-item">
+            <div class="step-number">1</div>
+            <div class="step-content">
+              <h4>Buat QApplication</h4>
+              <p>
+                Instance wajib yang mengelola seluruh aplikasi
+                <code>app = QApplication(sys.argv)</code>
+              </p>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-number">2</div>
+            <div class="step-content">
+              <h4>Buat Window/Widget</h4>
+              <p>
+                Buat jendela atau widget utama
+                <code>window = QMainWindow()</code> atau
+                <code>window = QWidget()</code>
+              </p>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-number">3</div>
+            <div class="step-content">
+              <h4>Tampilkan Window</h4>
+              <p>Tampilkan jendela ke layar <code>window.show()</code></p>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-number">4</div>
+            <div class="step-content">
+              <h4>Jalankan Event Loop</h4>
+              <p>Mulai loop utama aplikasi <code>app.exec_()</code></p>
+            </div>
+          </div>
+        </div>
+        <div class="bab-reference">
+          <span>📖 Dipelajari di: </span>
+          <a href="script/bab02_jendela_kosong.py">Bab 2 - Jendela Kosong</a>
+        </div>
+      </div>
+
+      <!-- Slide 4: Core 2 - Event Loop -->
+      <div class="slide slide-4">
+        <h2>Core 2: Event Loop 🔄</h2>
+        <p class="subtitle" style="margin-bottom: 2rem">
+          Jantung aplikasi GUI yang terus berjalan merespons event
+        </p>
+        <div class="event-loop-visual">
+          <div class="loop-diagram">
+            <div class="loop-circle">
+              <span>Event<br />Loop<br />♾️</span>
+            </div>
+          </div>
+          <div class="event-items">
+            <div class="event-item">
+              <span class="icon">🖱️</span>
+              <span>Mouse Click</span>
+            </div>
+            <div class="event-item">
+              <span class="icon">⌨️</span>
+              <span>Keyboard Input</span>
+            </div>
+            <div class="event-item">
+              <span class="icon">📱</span>
+              <span>Resize Window</span>
+            </div>
+            <div class="event-item">
+              <span class="icon">⏰</span>
+              <span>Timer Event</span>
+            </div>
+          </div>
+        </div>
+        <div class="bab-reference" style="margin-top: 2rem; max-width: 600px">
+          <span>📖 Dipelajari di: </span>
+          <a href="script/bab07_signal_slot.py">Bab 7 - Signal & Slot</a>,
+          <a href="script/bab23_timer.py">Bab 23 - Timer</a>,
+          <a href="script/bab28_mouse_events.py">Bab 28 - Mouse Events</a>
+        </div>
+      </div>
+
+      <!-- Slide 5: Core 3 - Widgets & Layouts -->
+      <div class="slide slide-5">
+        <h2>Core 3: Widgets & Layouts 🧩</h2>
+        <p class="subtitle" style="margin-bottom: 2rem">
+          Konsep "kepingan lego" dan cara menyusunnya
+        </p>
+        <div class="widgets-layout">
+          <div class="widget-section">
+            <h3 class="section-title">🧱 Widgets</h3>
+            <div class="widget-tags">
+              <span class="widget-tag">QPushButton</span>
+              <span class="widget-tag">QLabel</span>
+              <span class="widget-tag">QLineEdit</span>
+              <span class="widget-tag">QTextEdit</span>
+              <span class="widget-tag">QComboBox</span>
+              <span class="widget-tag">QCheckBox</span>
+              <span class="widget-tag">QRadioButton</span>
+              <span class="widget-tag">QTableWidget</span>
+              <span class="widget-tag">QTreeWidget</span>
+              <span class="widget-tag">QProgressBar</span>
+            </div>
+          </div>
+          <div class="layout-section">
+            <h3 class="section-title">📐 Layouts</h3>
+            <div class="layout-types">
+              <div class="layout-type">
+                <strong>QVBoxLayout</strong> <span>- Susun vertikal</span>
+              </div>
+              <div class="layout-type">
+                <strong>QHBoxLayout</strong> <span>- Susun horizontal</span>
+              </div>
+              <div class="layout-type">
+                <strong>QGridLayout</strong> <span>- Susun grid</span>
+              </div>
+              <div class="layout-type">
+                <strong>QFormLayout</strong> <span>- Susun form</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="bab-reference" style="margin-top: 1.5rem">
+          <span>📖 Dipelajari di: </span>
+          <a href="script/bab03_label.py">Bab 3</a>,
+          <a href="script/bab04_tombol.py">Bab 4</a>,
+          <a href="script/bab05_layout.py">Bab 5 - Layout</a>,
+          <a href="script/bab06_form.py">Bab 6 - Form</a>
+        </div>
+      </div>
+
+      <!-- Slide 6: Core 4 - Styling -->
+      <div class="slide slide-6">
+        <h2>Core 4: Styling dengan CSS 🎨</h2>
+        <p class="subtitle" style="margin-bottom: 2rem">
+          Bawa kekuatan desain CSS ke komponen desktop
+        </p>
+        <div class="styling-demo">
+          <div class="code-block">
+            <div class="code-header">Python + QSS (Qt Style Sheet)</div>
+            <div class="code-content">
+              <span class="keyword">button</span>.setStyleSheet(<span
+                class="string"
+                >""" QPushButton {
+                <span class="property">background-color</span>:
+                <span class="value">#d4af37</span>;
+                <span class="property">color</span>:
+                <span class="value">#0d0d0d</span>;
+                <span class="property">border-radius</span>:
+                <span class="value">10px</span>;
+                <span class="property">padding</span>:
+                <span class="value">10px 20px</span>;
+                <span class="property">font-size</span>:
+                <span class="value">16px</span>; } QPushButton:hover {
+                <span class="property">background-color</span>:
+                <span class="value">#f4d03f</span>; } """</span
+              >)
+            </div>
+          </div>
+          <div class="css-features">
+            <div class="css-feature">
+              <div class="icon">🎨</div>
+              <span>Colors</span>
+            </div>
+            <div class="css-feature">
+              <div class="icon">📐</div>
+              <span>Borders</span>
+            </div>
+            <div class="css-feature">
+              <div class="icon">💫</div>
+              <span>Gradients</span>
+            </div>
+            <div class="css-feature">
+              <div class="icon">🖼️</div>
+              <span>Images</span>
+            </div>
+            <div class="css-feature">
+              <div class="icon">✨</div>
+              <span>Animations</span>
+            </div>
+          </div>
+        </div>
+        <div class="bab-reference" style="margin-top: 1.5rem">
+          <span>📖 Dipelajari di: </span>
+          <a href="script/bab10_styling.py">Bab 10 - Styling</a>
+        </div>
+      </div>
+
+      <!-- Slide 7: Qt Designer -->
+      <div class="slide slide-7">
+        <h2>Bonus: Qt Designer 🔧</h2>
+        <p class="subtitle" style="margin-bottom: 2rem">
+          Drag & drop GUI builder — desain tanpa coding!
+        </p>
+        <div class="content-box" style="max-width: 900px">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem">
+            <div>
+              <h4 style="color: var(--gold-primary); margin-bottom: 1rem">
+                ✨ Fitur
+              </h4>
+              <ul
+                style="
+                  list-style: none;
+                  color: var(--text-secondary);
+                  line-height: 2;
+                "
+              >
+                <li>🎨 Drag & drop widget</li>
+                <li>📐 Visual layout management</li>
+                <li>🔗 Signal-slot editor</li>
+                <li>💾 Save as .ui file</li>
+                <li>🔄 Convert to Python</li>
+              </ul>
+            </div>
+            <div>
+              <h4 style="color: var(--gold-primary); margin-bottom: 1rem">
+                🚀 Cara Akses
+              </h4>
+              <div class="code-block" style="margin: 0">
+                <div
+                  class="code-content"
+                  style="font-size: 0.85rem; padding: 1rem"
+                >
+                  <span class="comment"># Install</span>
+                  pip install pyqt5-tools
+
+                  <span class="comment"># Jalankan</span>
+                  pyqt5-tools designer
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="bab-reference" style="margin-top: 1.5rem">
+          <span>📖 Panduan lengkap: </span>
+          <a href="PYQT5_TOOLS.md">PYQT5_TOOLS.md</a>
+        </div>
+      </div>
+
+      <!-- Slide 8: CTA -->
+      <div class="slide slide-8">
+        <h2>Gas Mulai Belajar! 🚀</h2>
+        <p class="subtitle">
+          50 bab tutorial PyQt5 lengkap dengan source code siap eksekusi
+        </p>
+        <div class="stats-row">
+          <div class="stat-item">
+            <div class="number">50</div>
+            <div class="label">Bab Tutorial</div>
+          </div>
+          <div class="stat-item">
+            <div class="number">49</div>
+            <div class="label">Script Python</div>
+          </div>
+          <div class="stat-item">
+            <div class="number">10+</div>
+            <div class="label">Aplikasi Lengkap</div>
+          </div>
+        </div>
+        <a
+          href="https://github.com/kyeiki/project1"
+          class="cta-button"
+          target="_blank"
+        >
+          🔗 Kunjungi Repo GitHub
+        </a>
+        <div class="qr-container">
+          <img src="qr-lYo4g.png" alt="QR Code to GitHub Repo" />
+          <p>Scan untuk akses repo 👆</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="nav-dots">
+      <div class="nav-dot active" data-slide="0"></div>
+      <div class="nav-dot" data-slide="1"></div>
+      <div class="nav-dot" data-slide="2"></div>
+      <div class="nav-dot" data-slide="3"></div>
+      <div class="nav-dot" data-slide="4"></div>
+      <div class="nav-dot" data-slide="5"></div>
+      <div class="nav-dot" data-slide="6"></div>
+      <div class="nav-dot" data-slide="7"></div>
+    </div>
+
+    <div class="nav-arrows">
+      <button class="nav-arrow" id="prevBtn">←</button>
+      <button class="nav-arrow" id="nextBtn">→</button>
+    </div>
+
+    <div class="slide-number">
+      <span id="currentSlide">1</span> / <span id="totalSlides">8</span>
+    </div>
+
+    <script>
+      const slides = document.querySelectorAll(".slide");
+      const dots = document.querySelectorAll(".nav-dot");
+      const prevBtn = document.getElementById("prevBtn");
+      const nextBtn = document.getElementById("nextBtn");
+      const currentSlideEl = document.getElementById("currentSlide");
+      const totalSlidesEl = document.getElementById("totalSlides");
+
+      let currentSlide = 0;
+      totalSlidesEl.textContent = slides.length;
+
+      function showSlide(index) {
+        if (index < 0 || index >= slides.length) return;
+
+        slides.forEach((slide, i) => {
+          slide.classList.remove("active", "prev");
+          if (i < index) {
+            slide.classList.add("prev");
+          } else if (i === index) {
+            slide.classList.add("active");
+          }
+        });
+
+        dots.forEach((dot, i) => {
+          dot.classList.toggle("active", i === index);
+        });
+
+        currentSlide = index;
+        currentSlideEl.textContent = index + 1;
+      }
+
+      prevBtn.addEventListener("click", () => showSlide(currentSlide - 1));
+      nextBtn.addEventListener("click", () => showSlide(currentSlide + 1));
+
+      dots.forEach((dot) => {
+        dot.addEventListener("click", () => {
+          showSlide(parseInt(dot.dataset.slide));
+        });
+      });
+
+      // Keyboard navigation
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "ArrowRight" || e.key === " ") {
+          e.preventDefault();
+          showSlide(currentSlide + 1);
+        } else if (e.key === "ArrowLeft") {
+          showSlide(currentSlide - 1);
+        }
+      });
+
+      // Touch/swipe support
+      let touchStartX = 0;
+      let touchEndX = 0;
+
+      document.addEventListener("touchstart", (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+      });
+
+      document.addEventListener("touchend", (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+      });
+
+      function handleSwipe() {
+        const diff = touchStartX - touchEndX;
+        if (Math.abs(diff) > 50) {
+          if (diff > 0) {
+            showSlide(currentSlide + 1);
+          } else {
+            showSlide(currentSlide - 1);
+          }
+        }
+      }
+    </script>
+  </body>
+</html>
